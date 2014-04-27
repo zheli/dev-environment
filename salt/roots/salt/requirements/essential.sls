@@ -10,4 +10,3 @@ essential-packages:
       - ncurses-term
       - bash
       - git
-      - tmux
