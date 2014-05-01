@@ -2,7 +2,6 @@ tmux:
   pkg:
     - installed
 
-
 /home/vagrant/.tmux.conf:
   file:
     - managed
