@@ -12,10 +12,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network :forwarded_port, guest: 80, host: 8080
 
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  config.vm.network :private_network, ip: "192.168.33.10"
-
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
@@ -29,17 +25,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "sync_folder", "/vagrant", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
-  config.vm.synced_folder "salt/roots", "/srv", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
+  config.vm.synced_folder "sync_folder", "/vagrant"
+  config.vm.synced_folder "salt/roots", "/srv"
 
+  config.vm.hostname = "dev-env"
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
   config.vm.provider :virtualbox do |vb, override|
     override.vm.box = "precise64-docker"
-
     override.vm.box_url = "http://nitron-vagrant.s3-website-us-east-1.amazonaws.com/vagrant_ubuntu_12.04.3_amd64_virtualbox.box"
+    override.vm.network :private_network, ip: "192.168.33.10"
+    override.vm.synced_folder "sync_folder", "/vagrant", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
+    override.vm.synced_folder "salt/roots", "/srv", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
   #   # Don't boot with headless mode
   #   vb.gui = true
 
@@ -53,15 +52,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     override.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
     override.ssh.private_key_path = "keys/id_rsa"
     override.ssh.username = "vagrant"
-    # provider.client_id = DO_CLIENT_ID
-    # provider.api_key = DO_API_KEY
+    provider.client_id = DO_CLIENT_ID
+    provider.api_key = DO_API_KEY
     provider.image = "Ubuntu 13.10 x64"
     provider.region = "Amsterdam 2"
     provider.size = "512MB"
-    # provider.ssh_key_name = DO_SSH_KEY_NAME
-    provider.ca_path = "cacert.pem"
+    provider.ssh_key_name = DO_SSH_KEY_NAME
     provider.private_networking = true
     provider.setup = true
+    provider.ca_path = "keys/cacert.pem"
   end
 
   #
