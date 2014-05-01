@@ -1,6 +1,7 @@
 docker-python-apt:
   pkg.installed:
-    - name: python-apt
+    - names: 
+      - python-apt
 
 docker-dependencies:
    pkg.installed:
@@ -31,3 +32,9 @@ docker:
 add-vagrant-to-docker:
   cmd.run:
     - name: sudo gpasswd -a vagrant docker
+
+# ubuntu-image:
+#   docker.pulled:
+#     - repo: ubuntu
+#     - require:
+#       - service: docker

@@ -6,4 +6,4 @@ tmux:
 /home/vagrant/.tmux.conf:
   file:
     - managed
-    - source: salt://tmux/tmux.conf
+    - source: salt://tmux/tmux.conf 

@@ -10,3 +10,7 @@ essential-packages:
       - ncurses-term
       - bash
       - git
+      # Python stuff
+      - python-pip
+      - python-virtualenv
+      - python-dev
