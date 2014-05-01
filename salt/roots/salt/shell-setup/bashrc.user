@@ -1,0 +1,8 @@
+export LC_CTYPE="en_US.UTF-8"
+
+#virtualenvwrapper stuff
+export WORKON_HOME=~/Envs
+source /usr/local/bin/virtualenvwrapper.sh
+
+#home-made fancy-prompt
+. ~/.bash_prompt

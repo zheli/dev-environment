@@ -1,6 +1,6 @@
 base:
   '*':
     - requirements.essential
-    - python-virtualenv
+    - shell-setup
     - tmux
     - docker
