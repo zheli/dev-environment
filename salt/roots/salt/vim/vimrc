@@ -1,0 +1,107 @@
+"set color according to terminal
+if &term =~ "xterm"
+    "256 color --
+    let &t_Co=256
+    " restore screen after quitting
+    set t_ti=ESC7ESC[rESC[?47h t_te=ESC[?47lESC8
+    if has("terminfo")
+        let &t_Sf="\ESC[3%p1%dm"
+        let &t_Sb="\ESC[4%p1%dm"
+    else
+        let &t_Sf="3%dm"
+        let &t_Sb="4%dm"
+    endif
+else
+    if &term =~ "screen-bce"
+        "256 color --
+        let &t_Co=256
+        " restore screen after quitting
+        set t_ti=ESC7ESC[rESC[?47h t_te=ESC[?47lESC8
+        if has("terminfo")
+            let &t_Sf="\ESC[3%p1%dm"
+            let &t_Sb="\ESC[4%p1%dm"
+        else
+            let &t_Sf="^[3%dm"
+            let &t_Sb="^[4%dm"
+        endif
+    endif
+endif
+
+set nocompatible   " Disable vi-compatibility
+set laststatus=2   " Always show the statusline
+set encoding=utf-8 " Necessary to show unicode glyphs
+
+"pathogen
+call pathogen#infect()
+
+"powerline
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+let g:Powerline_symbols = 'fancy'
+
+"solarized
+syntax enable
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+
+"coding preferences
+set t_Co=256
+set number
+set expandtab
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set cursorline
+set ignorecase
+set smartcase
+set incsearch
+:syntax on
+filetype plugin indent on
+filetype plugin on
+filetype indent on
+
+"tab-completion
+set wildmode=longest,list,full
+set wildmenu
+
+"javascript support
+let g:tarbar_type_javascript = {
+    \ 'ctagsbin' : '/usr/local/bin/jsctags'
+\ }
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+
+"save sessions
+map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
+map <F3> :source ~/.vim_session <cr>     " And load session with F3
+map <F3> :source ~/.vim_session <cr>     " And load session with F3
+
+"different file type
+"au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
+"ignore some files
+set wildignore=*.pyc,*cover
+
+" tab navigation like firefox
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-t>     <Esc>:tabnew<CR>
+noremap <C-Tab> :<C-U>tabnext<CR>
+inoremap <C-Tab> <C-\><C-N>:tabnext<CR>
+cnoremap <C-Tab> <C-C>:tabnext<CR>
+
+"tagbar hotkey
+nmap <F8> :TagbarToggle<CR>
+let g:tarbar_width=40
+
+"highlight cursorline
+:hi CursorLine   cterm=bold ctermbg=187 ctermfg=black guibg=darkred guifg=white
+:hi CursorColumn cterm=bold ctermbg=187 ctermfg=black guibg=darkred guifg=white
+:nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+set cursorline cursorcolumn
+
+"change background color to red for line that is longer than 80 chars
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
+match OverLength /\%81v.\+/

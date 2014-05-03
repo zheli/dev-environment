@@ -14,3 +14,9 @@ essential-packages:
       - python-pip
       - python-virtualenv
       - python-dev
+
+/home/vagrant/.config:
+  file.directory:
+    - user: vagrant
+    - group: vagrant
+    - mode: 700
