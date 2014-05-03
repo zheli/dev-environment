@@ -83,6 +83,10 @@ map <F3> :source ~/.vim_session <cr>     " And load session with F3
 "ignore some files
 set wildignore=*.pyc,*cover
 
+"always have nerdtree
+autocmd VimEnter * NERDTree
+autocmd BufEnter * NERDTreeMirror
+
 " tab navigation like firefox
 nnoremap <C-t>     :tabnew<CR>
 inoremap <C-t>     <Esc>:tabnew<CR>
