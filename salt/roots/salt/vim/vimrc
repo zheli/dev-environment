@@ -87,13 +87,6 @@ set wildignore=*.pyc,*cover
 autocmd VimEnter * NERDTree
 autocmd BufEnter * NERDTreeMirror
 
-" tab navigation like firefox
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-t>     <Esc>:tabnew<CR>
-noremap <C-Tab> :<C-U>tabnext<CR>
-inoremap <C-Tab> <C-\><C-N>:tabnext<CR>
-cnoremap <C-Tab> <C-C>:tabnext<CR>
-
 "tagbar hotkey
 nmap <F8> :TagbarToggle<CR>
 let g:tarbar_width=40
@@ -107,5 +100,5 @@ au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
 
 "change background color to red for line that is longer than 80 chars
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
-match OverLength /\%81v.\+/
+:hi OverLength ctermbg=red ctermfg=white guibg=#592929 
+call matchadd('OverLength', '\%>121v.\+')
