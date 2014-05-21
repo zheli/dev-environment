@@ -4,4 +4,5 @@ base:
     - shell-setup
     - tmux
     - vim
+  'docker-srv':
     - docker
