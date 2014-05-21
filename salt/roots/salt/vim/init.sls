@@ -2,30 +2,30 @@ vim:
   pkg:
     - installed
 
-/home/vagrant/.vimrc:
+/home/{{ pillar['ssh-username'] }}/.vimrc:
   file:
     - managed
     - source: salt://vim/vimrc
     - mode: 664
 
-/home/vagrant/.vim:
+/home/{{ pillar['ssh-username'] }}/.vim:
   file.directory:
-    - user: vagrant
-    - group: vagrant
+    - user: {{ pillar['ssh-username'] }}
+    - group: {{ pillar['ssh-username'] }}
     - template: jinja
     - mode: 775    
 
-/home/vagrant/.vim/autoload:
+/home/{{ pillar['ssh-username'] }}/.vim/autoload:
   file.directory:
-    - user: vagrant
-    - group: vagrant
+    - user: {{ pillar['ssh-username'] }}
+    - group: {{ pillar['ssh-username'] }}
     - template: jinja
     - mode: 775
 
-/home/vagrant/.vim/bundle:
+/home/{{ pillar['ssh-username'] }}/.vim/bundle:
   file.directory:
-    - user: vagrant
-    - group: vagrant
+    - user: {{ pillar['ssh-username'] }}
+    - group: {{ pillar['ssh-username'] }}
     - template: jinja
     - mode: 775
 
@@ -34,7 +34,7 @@ pathogen_source:
     - name: https://github.com/tpope/vim-pathogen.git
     - target: /tmp/vim-pathogen
 
-/home/vagrant/.vim/autoload/pathogen.vim:
+/home/{{ pillar['ssh-username'] }}/.vim/autoload/pathogen.vim:
   file.copy:
     - source: /tmp/vim-pathogen/autoload/pathogen.vim
     - force: true
@@ -44,41 +44,47 @@ pathogen_source:
 powerline_source:
   git.latest:
     - name: https://github.com/Lokaltog/powerline.git
-    - target: /home/vagrant/.vim/bundle/powerline
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/powerline
+    - force: true
 
-/home/vagrant/.config/powerline:
+/home/{{ pillar['ssh-username'] }}/.config/powerline:
   file.directory:
-    - user: vagrant
-    - group: vagrant
+    - user: {{ pillar['ssh-username'] }}
+    - group: {{ pillar['ssh-username'] }}
     - template: jinja
     - mode: 775
+    - force: true
     - require_in:
       - git: powerline_source
 
-/home/vagrant/.config/powerline/:
+/home/{{ pillar['ssh-username'] }}/.config/powerline/:
   file.recurse:
     - source: salt://vim/powerline_config_files
     - force: true
     - require:
       - git: powerline_source
-      - file: /home/vagrant/.config/powerline
+      - file: /home/{{ pillar['ssh-username'] }}/.config/powerline
 
 solarized_source:
   git.latest:
     - name: git://github.com/altercation/vim-colors-solarized.git
-    - target: /home/vagrant/.vim/bundle/solarized
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/solarized
+    - force: true
 
 nerdtree_source:
   git.latest:
     - name: https://github.com/scrooloose/nerdtree.git
-    - target: /home/vagrant/.vim/bundle/nerdtree
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/nerdtree
+    - force: true
 
 autopairs_source:
   git.latest:
     - name: https://github.com/jiangmiao/auto-pairs.git
-    - target: /home/vagrant/.vim/bundle/auto-pairs
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/auto-pairs
+    - force: true
 
 tarbar_source:
   git.latest:
     - name: https://github.com/majutsushi/tagbar.git
-    - target: /home/vagrant/.vim/bundle/tarbar
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/tarbar
+    - force: true
