@@ -3,6 +3,21 @@ dev-environment
 
 My development environment bootstrap code using Vagrant, Salt and Docker. Right now it can either bootstrap it in virtualbox or digitalocean.
 
+Use VirtualBox
+----------
+
+It is very simple to bootstrap development environment via VirtualBox. Just create a new box using this command:
+
+```
+vagrant up
+```
+
+And then you can ssh into the box using
+
+```
+vagrant ssh
+```
+
 Use Digital Ocean
 ----------
 
@@ -13,3 +28,5 @@ Then you can create a new droplet using:
 ```
 vagrant up --provider=digital_ocean
 ```
+
+After that, you can use it the same way like a VirtualBox machine.
