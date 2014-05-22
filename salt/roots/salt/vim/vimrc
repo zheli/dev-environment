@@ -102,3 +102,9 @@ set cursorline cursorcolumn
 "change background color to red for line that is longer than 80 chars
 :hi OverLength ctermbg=red ctermfg=white guibg=#592929 
 call matchadd('OverLength', '\%>121v.\+')
+au WinEnter * call matchadd('OverLength', '\%>121v.\+')
+
+"highlight trailing whitespace
+:hi ExtraWhitespace ctermbg=red guibg=red
+call matchadd('ExtraWhitespace', '\s\+$', 11)
+autocmd WinEnter * call matchadd('ExtraWhitespace', '\s\+$', 11)
