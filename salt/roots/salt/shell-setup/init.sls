@@ -1,8 +1,10 @@
+python-pip:
+  pkg.installed
+
 virtualenvwrapper:
   pip.installed:
     - require:
       - pkg: python-pip
-      - pkg: python-virtualenv
 
 /home/vagrant/Envs:
   file.directory:
@@ -15,14 +17,14 @@ virtualenvwrapper:
   file:
     - managed
     - user: vagrant
-    - group: vagrant    
+    - group: vagrant
     - source: salt://shell-setup/bashrc
 
 /home/vagrant/.bashrc.user:
   file:
     - managed
-    - user: vagrant
-    - group: vagrant   
+    - user: vagran
+    - group: vagrant
     - source: salt://shell-setup/bashrc.user
 
 /home/vagrant/.bash_prompt:
@@ -31,3 +33,10 @@ virtualenvwrapper:
     - user: vagrant
     - group: vagrant
     - source: salt://shell-setup/bash_prompt
+
+/home/vagrant/.gitconfig:
+  file:
+    - managed
+    - user: vagrant
+    - group: vagrant
+    - source: salt://shell-setup/gitconfig
