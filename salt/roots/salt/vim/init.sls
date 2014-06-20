@@ -13,7 +13,7 @@ vim:
     - user: {{ pillar['ssh-username'] }}
     - group: {{ pillar['ssh-username'] }}
     - template: jinja
-    - mode: 775    
+    - mode: 775
 
 /home/{{ pillar['ssh-username'] }}/.vim/autoload:
   file.directory:
@@ -41,29 +41,11 @@ pathogen_source:
     - require:
       - git: pathogen_source
 
-powerline_source:
+airline_source:
   git.latest:
-    - name: https://github.com/Lokaltog/powerline.git
-    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/powerline
+    - name: https://github.com/bling/vim-airline
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/airline
     - force: true
-
-/home/{{ pillar['ssh-username'] }}/.config/powerline:
-  file.directory:
-    - user: {{ pillar['ssh-username'] }}
-    - group: {{ pillar['ssh-username'] }}
-    - template: jinja
-    - mode: 775
-    - force: true
-    - require_in:
-      - git: powerline_source
-
-/home/{{ pillar['ssh-username'] }}/.config/powerline/:
-  file.recurse:
-    - source: salt://vim/powerline_config_files
-    - force: true
-    - require:
-      - git: powerline_source
-      - file: /home/{{ pillar['ssh-username'] }}/.config/powerline
 
 solarized_source:
   git.latest:
@@ -87,4 +69,10 @@ tarbar_source:
   git.latest:
     - name: https://github.com/majutsushi/tagbar.git
     - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/tarbar
+    - force: true
+
+ctrlp_source:
+  git.latest:
+    - name: https://github.com/kien/ctrlp.vim.git
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/ctrlp
     - force: true
