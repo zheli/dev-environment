@@ -8,3 +8,5 @@
 	name = Zhe Li
 [push]
 	default = matching
+[core]
+  excludesfile = ~/.gitignore_global

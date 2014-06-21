@@ -40,3 +40,10 @@ virtualenvwrapper:
     - user: vagrant
     - group: vagrant
     - source: salt://shell-setup/gitconfig
+
+/home/vagrant/.gitignore_global:
+  file:
+    - managed
+    - user: vagrant
+    - group: vagrant
+    - source: salt://shell-setup/gitignore_global
