@@ -53,6 +53,12 @@ solarized_source:
     - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/solarized
     - force: true
 
+tomorrow_source:
+  git.latest:
+    - name: https://github.com/chriskempson/tomorrow-theme.git
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/tomorrow
+    - force: true
+
 nerdtree_source:
   git.latest:
     - name: https://github.com/scrooloose/nerdtree.git
