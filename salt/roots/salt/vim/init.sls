@@ -71,6 +71,12 @@ tarbar_source:
     - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/tarbar
     - force: true
 
+fugitive_source:
+  git.latest:
+    - name: git://github.com/tpope/vim-fugitive.git
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/fugitive
+    - force: true
+
 ctrlp_source:
   git.latest:
     - name: https://github.com/kien/ctrlp.vim.git
