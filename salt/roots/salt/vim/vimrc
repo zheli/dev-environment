@@ -84,8 +84,8 @@ map <F3> :source ~/.vim_session <cr>     " And load session with F3
 set wildignore=*.pyc,*cover
 
 "always have nerdtree
-autocmd VimEnter * NERDTree
-autocmd BufEnter * NERDTreeMirror
+"autocmd VimEnter * NERDTree
+"autocmd BufEnter * NERDTreeMirror
 
 "tagbar hotkey
 nmap <F8> :TagbarToggle<CR>
