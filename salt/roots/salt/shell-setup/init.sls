@@ -23,7 +23,7 @@ virtualenvwrapper:
 /home/vagrant/.bashrc.user:
   file:
     - managed
-    - user: vagran
+    - user: vagrant
     - group: vagrant
     - source: salt://shell-setup/bashrc.user
 
