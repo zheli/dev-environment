@@ -6,6 +6,7 @@ essential-packages:
       - build-essential
       - openssh-server
       - language-pack-en
+      - htop
       # We need this to recognize rxvt terminal
       - ncurses-term
       - bash

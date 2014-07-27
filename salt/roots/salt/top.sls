@@ -4,6 +4,6 @@ base:
     - shell-setup
     - tmux
     - vim
-    - squid
   'docker-srv':
+    - requirements.swapfile
     - docker
