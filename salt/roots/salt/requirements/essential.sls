@@ -1,6 +1,6 @@
 essential-packages:
-  pkg.installed:
-    - names:
+  pkg.latest:
+    - pkgs:
       - vim-nox
       - sysstat
       - build-essential
@@ -21,3 +21,15 @@ essential-packages:
     - user: vagrant
     - group: vagrant
     - mode: 700
+    - require:
+      - user: vagrant
+
+vagrant:
+  user.present:
+    - shell: /bin/bash
+    - home: /home/vagrant
+    - gid_from_name: True
+    - group:
+      - adm
+      - dip
+      - plugdev
