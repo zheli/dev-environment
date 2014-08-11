@@ -22,10 +22,11 @@ essential-packages:
     - group: vagrant
     - mode: 700
     - require:
-      - user: vagrant
+      - user: vagrant-user
 
-vagrant:
+vagrant-user
   user.present:
+    - name: vagrant
     - shell: /bin/bash
     - home: /home/vagrant
     - gid_from_name: True
