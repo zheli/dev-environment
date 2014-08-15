@@ -88,3 +88,9 @@ ctrlp_source:
     - name: https://github.com/kien/ctrlp.vim.git
     - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/ctrlp
     - force: true
+
+choosewin:
+  git.latest:
+    - name: https://github.com/t9md/vim-choosewin.git
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/vim-choosewin
+    - force: true
