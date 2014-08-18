@@ -35,12 +35,12 @@ set encoding=utf-8 " Necessary to show unicode glyphs
 call pathogen#infect()
 
 "powerline
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-let g:Powerline_symbols = 'fancy'
+"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+"let g:Powerline_symbols = 'fancy'
 
 "airline
-"let g:airline_powerline_fonts = 1
-"let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 "solarized
 syntax enable
