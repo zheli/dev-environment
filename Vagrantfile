@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 80, host: 9980
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -35,13 +35,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Example for VirtualBox:
   #
   config.vm.provider :virtualbox do |vb, override|
-    override.vm.box = "precise64-docker"
-    override.vm.box_url = "http://nitron-vagrant.s3-website-us-east-1.amazonaws.com/vagrant_ubuntu_12.04.3_amd64_virtualbox.box"
-    override.vm.network :private_network, ip: "192.168.33.10"
-    override.vm.synced_folder "sync_folder", "/vagrant", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
-    override.vm.synced_folder "salt/roots", "/srv", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
-  #   # Don't boot with headless mode
-  #   vb.gui = true
+    override.vm.box = "trusty-server-cloudimg-amd64"
+    override.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    # override.vm.network "private_network", ip: "192.168.33.10"
+    # override.vm.network "public_network", bridge: 'Realtek PCIe GBE Family Controller'
+    # override.vm.synced_folder "sync_folder", "/vagrant", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
+    # override.vm.synced_folder "salt/roots", "/srv", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
+   
+     # Don't boot with headless mode
+    #   vb.gui = true
 
     # Use VBoxManage to customize the VM. For example to change memory:
     vb.customize ["modifyvm", :id, "--memory", "512"]
@@ -83,7 +85,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     salt.run_highstate = true
 
     # Install the latest version of SaltStack
-    salt.install_type = "stable"
+    salt.install_type = "git"
 
   end
 end

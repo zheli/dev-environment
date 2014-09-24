@@ -44,12 +44,11 @@ let g:airline#extensions#tabline#enabled = 1
 
 "solarized
 syntax enable
-let g:solarized_termcolors=256
-set background=dark
 colorscheme solarized
+set background=dark
 
 "coding preferences
-set t_Co=256
+set t_Co=16
 set number
 set expandtab
 set tabstop=8
@@ -99,16 +98,21 @@ let g:tarbar_width=40
 :hi CursorLine   cterm=bold ctermbg=187 ctermfg=black guibg=darkred guifg=white
 :hi CursorColumn cterm=bold ctermbg=187 ctermfg=black guibg=darkred guifg=white
 :nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
+"au WinLeave * set nocursorline nocursorcolumn
+"au WinEnter * set cursorline cursorcolumn
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline cursorcolumn
+    au WinLeave * setlocal nocursorline nocursorcolumn
+augroup END
 set cursorline cursorcolumn
-
-"change background color to red for line that is longer than 80 chars
-:hi OverLength ctermbg=red ctermfg=white guibg=#592929 
-call matchadd('OverLength', '\%>121v.\+')
-au WinEnter * call matchadd('OverLength', '\%>121v.\+')
 
 "highlight trailing whitespace
 :hi ExtraWhitespace ctermbg=red guibg=red
 call matchadd('ExtraWhitespace', '\s\+$', 11)
 autocmd WinEnter * call matchadd('ExtraWhitespace', '\s\+$', 11)
+
+"change background color to red for line that is longer than 120 chars
+:hi OverLength ctermbg=red ctermfg=white guibg=#592929
+call matchadd('OverLength', '\%121v.\+')
+autocmd WinEnter * call matchadd('OverLength', '\%>121v.\+')

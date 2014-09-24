@@ -24,7 +24,7 @@ essential-packages:
     - require:
       - user: vagrant-user
 
-vagrant-user
+vagrant-user:
   user.present:
     - name: vagrant
     - shell: /bin/bash
