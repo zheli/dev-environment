@@ -94,3 +94,9 @@ choosewin:
     - name: https://github.com/t9md/vim-choosewin.git
     - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/vim-choosewin
     - force: true
+
+autocomplpop
+  git.latest:
+    - name: https://zheli@bitbucket.org/ns9tks/vim-autocomplpop
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/vim-autocomplpop
+    - force: true
