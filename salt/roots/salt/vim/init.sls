@@ -96,7 +96,7 @@ choosewin:
     - force: true
 
 autocomplpop
-  git.latest:
+  hg.latest:
     - name: https://zheli@bitbucket.org/ns9tks/vim-autocomplpop
     - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/vim-autocomplpop
     - force: true
