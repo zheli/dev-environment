@@ -100,3 +100,9 @@ autocomplpop
     - name: https://zheli@bitbucket.org/ns9tks/vim-autocomplpop
     - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/vim-autocomplpop
     - force: true
+
+l9
+  hg.latest:
+    - name: https://zheli@bitbucket.org/ns9tks/vim-l9
+    - target: /home/{{ pillar['ssh-username'] }}/.vim/bundle/vim-l9
+    - force: true
