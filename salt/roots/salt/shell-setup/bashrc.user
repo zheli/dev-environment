@@ -6,6 +6,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 #alias
 alias tmux="TERM=xterm-256color tmux"
+alias rmpyc='find . -name *.pyc -exec rm -rf {} \;'
 
 #home-made fancy-prompt
 . ~/.bash_prompt
