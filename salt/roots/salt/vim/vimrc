@@ -95,8 +95,8 @@ nmap <F8> :TagbarToggle<CR>
 let g:tarbar_width=40
 
 "highlight cursorline
-:hi CursorLine   cterm=bold ctermbg=187 ctermfg=black guibg=darkred guifg=white
-:hi CursorColumn cterm=bold ctermbg=187 ctermfg=black guibg=darkred guifg=white
+:hi CursorLine   cterm=None ctermbg=2 ctermfg=white guibg=darkedred guifg=white
+:hi CursorColumn cterm=None ctermbg=2 ctermfg=white guibg=darkedred guifg=white
 :nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 "au WinLeave * set nocursorline nocursorcolumn
 "au WinEnter * set cursorline cursorcolumn
