@@ -84,11 +84,13 @@ map <F3> :source ~/.vim_session <cr>     " And load session with F3
 "different file type
 "au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
 "ignore some files
-set wildignore=*.pyc,*cover
+set wildignore=*.pyc,*cover,*/static/*,*/assets/*
 
 "always have nerdtree
 "autocmd VimEnter * NERDTree
 "autocmd BufEnter * NERDTreeMirror
+"nerdtree hotkeys
+silent! nmap <C-e> :NERDTreeToggle<CR>
 
 "tagbar hotkey
 nmap <F8> :TagbarToggle<CR>
@@ -107,12 +109,16 @@ augroup CursorLine
 augroup END
 set cursorline cursorcolumn
 
+"change background color to red for line that is longer than 120 chars
+:hi OverLength ctermbg=red ctermfg=white guibg=#592929
+call matchadd('OverLength', '\%121v.\+')
+autocmd WinEnter * call matchadd('OverLength', '\%>121v.\+')
+
 "highlight trailing whitespace
 :hi ExtraWhitespace ctermbg=red guibg=red
 call matchadd('ExtraWhitespace', '\s\+$', 11)
 autocmd WinEnter * call matchadd('ExtraWhitespace', '\s\+$', 11)
 
-"change background color to red for line that is longer than 120 chars
-:hi OverLength ctermbg=red ctermfg=white guibg=#592929
-call matchadd('OverLength', '\%121v.\+')
-autocmd WinEnter * call matchadd('OverLength', '\%>121v.\+')
+"choosewin
+nmap  -  <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
