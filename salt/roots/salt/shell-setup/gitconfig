@@ -7,6 +7,9 @@
 	email = linuxcity.jn@gmail.com
 	name = Zhe Li
 [push]
-	default = matching
+	default = current
 [core]
   excludesfile = ~/.gitignore_global
+[alias]
+  st = status
+  co = checkout
