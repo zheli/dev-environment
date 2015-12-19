@@ -1,9 +1,10 @@
 base:
   '*':
     - requirements.essential
-    - shell-setup
-    - tmux
-    - vim
-  'docker-srv':
-    - requirements.swapfile
-    - docker
+    - users
+#    - shell-setup
+#    - tmux
+#    - vim
+#  'docker-srv':
+#    - requirements.swapfile
+#    - docker
