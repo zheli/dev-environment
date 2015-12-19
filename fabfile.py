@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 from fabric.api import parallel, run
+from fabric.contrib.files import append
 from fabric.operations import sudo, put
 
 
@@ -26,7 +28,7 @@ def install_gitpython():
     '''
     Installs gitpython and dependencies
     '''
-    sudo('apt-get install git python-git')
+    sudo('apt-get install -y git python-git')
 
 
 @parallel
@@ -58,6 +60,24 @@ def restart_minion():
 
 
 @parallel
+def run_highstate():
+    sudo("salt-call state.highstate")
+
+
+def _read_key_file(key_file):
+    key_file = os.path.expanduser(key_file)
+    if not key_file.endswith('pub'):
+        raise RuntimeWarning('Trying to push non-public part of key pair')
+    with open(key_file) as f:
+        return f.read()
+
+
+def push_key(key_file='~/.ssh/id_rsa.pub'):
+    key_text = _read_key_file(key_file)
+    append('~/.ssh/authorized_keys', key_text)
+
+
+@parallel
 def fullstrap_minions():
     '''
     Install saltstack, set master, restart the salt-minion daemon
@@ -70,4 +90,4 @@ def fullstrap_minions():
     copy_minion_config()
     copy_salt_state()
     restart_minion()
-    sudo('apt-get -y install vim')  # Sneaking this in to make life better
+    run_highstate()
