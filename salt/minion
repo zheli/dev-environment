@@ -407,15 +407,20 @@
 # defined below by setting it to "local". Setting a local file_client runs the
 # minion in masterless mode.
 file_client: local
-
+fileserver_backend:
+  - roots
+  - git
+gitfs_provider: gitpython
+gitfs_remotes:
+  - https://github.com/saltstack-formulas/users-formula
 # The file directory works on environments passed to the minion, each environment
 # can have multiple root directories, the subdirectories in the multiple file
 # roots cannot match, otherwise the downloaded files will not be able to be
 # reliably ensured. A base environment is required to house the top file.
 # Example:
-# file_roots:
-#   base:
-#     - /srv/salt/
+file_roots:
+  base:
+    - /srv/salt/
 #   dev:
 #     - /srv/salt/dev/services
 #     - /srv/salt/dev/states
