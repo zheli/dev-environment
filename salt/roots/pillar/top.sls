@@ -4,5 +4,3 @@ base:
     - users
   'faceahead':
     - faceahead-common
-  '*vagrant':
-    - vagrantdev
