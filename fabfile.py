@@ -61,7 +61,7 @@ def restart_minion():
 
 @parallel
 def run_highstate():
-    sudo("salt-call state.highstate")
+    sudo("salt-call state.highstate -l debug")
 
 
 def _read_key_file(key_file):
