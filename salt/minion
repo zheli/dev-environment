@@ -4,7 +4,7 @@ fileserver_backend:
   - git
 gitfs_provider: gitpython
 gitfs_remotes:
-  - https://github.com/saltstack-formulas/users-formula@741b256684260eb94852f5cd8b826e953a5309aa
+  - https://github.com/saltstack-formulas/users-formula
 file_roots:
   base:
     - /srv/salt/
