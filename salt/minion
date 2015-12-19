@@ -5,6 +5,7 @@ fileserver_backend:
 gitfs_provider: gitpython
 gitfs_remotes:
   - https://github.com/saltstack-formulas/users-formula
+  - https://github.com/zheli/requirement-formula
 file_roots:
   base:
     - /srv/salt/
