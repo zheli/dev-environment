@@ -1,14 +1,23 @@
 #dev-environment
 My development environment bootstrap code using Vagrant and Salt.
 
+##Prerequisites
+You will need fabric.
+
 ##Use VirtualBox
-It is very simple to bootstrap development environment via VirtualBox. Just create a new box using this command:
+It is very simple to bootstrap development environment via VirtualBox. First make sure you have a RSA pubkey in your .ssh folder, then
+ just create a new box using this command:
 ```
-vagrant up && ./bootstrap.sh
+vagrant up && ./bootstrap.sh 127.0.0.1:[mapped ssh port] vagrant
 ```
 And then you can ssh into the box using
 ```
 vagrant ssh
+```
+
+##Use on a remote host
+```
+./bootstrap.sh [remote ip] root
 ```
 
 ##What's in it?
