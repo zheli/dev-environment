@@ -16,21 +16,7 @@ essential-packages:
       - python-virtualenv
       - python-dev
 
-/home/vagrant/.config:
-  file.directory:
-    - user: vagrant
-    - group: vagrant
-    - mode: 700
-    - require:
-      - user: vagrant-user
+virtualenv:
+  pip.installed:
+  - name: virtualenvwrapper
 
-vagrant-user:
-  user.present:
-    - name: vagrant
-    - shell: /bin/bash
-    - home: /home/vagrant
-    - gid_from_name: True
-    - group:
-      - adm
-      - dip
-      - plugdev
