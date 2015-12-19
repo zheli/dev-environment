@@ -2,6 +2,7 @@ base:
   '*':
     - requirements.essential
     - users
+    - tmux
 #    - shell-setup
 #    - tmux
 #    - vim
