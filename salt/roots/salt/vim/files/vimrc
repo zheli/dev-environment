@@ -1,0 +1,248 @@
+set nocompatible   " Disable vi-compatibility
+
+" Vundle
+"--------------------------------------------------------------------------
+
+" Vundle
+
+    " Setting up Vundle
+        let iCanHazVundle=1
+        let vundle_readme=expand("~/.vim/bundle/Vundle.vim/README.md")
+        if !filereadable(vundle_readme)
+            echo "Installing Vundle.."
+            echo ""
+            silent !mkdir -p ~/.vim/bundle
+            silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+            let iCanHazVundle=0
+        endif
+        filetype off
+        set rtp+=~/.vim/bundle/Vundle.vim
+        call vundle#begin()
+        Plugin 'gmarik/Vundle.vim'
+
+    " Setting up Vundle end
+
+    " Vundles
+
+    " Core
+    Plugin 'https://github.com/bling/vim-airline'
+    Plugin 'git://github.com/altercation/vim-colors-solarized.git'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'https://github.com/chriskempson/vim-tomorrow-theme'
+"    Plugin 'https://github.com/tpope/vim-pathogen.git'
+
+    " Interface
+    Plugin 'https://github.com/kien/ctrlp.vim.git'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'bling/vim-bufferline'
+    Plugin 'moll/vim-bbye'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'https://github.com/t9md/vim-choosewin.git'
+    Plugin 'https://github.com/jiangmiao/auto-pairs.git'
+    Plugin 'rking/ag.vim'
+"    Plugin 'severin-lemaignan/vim-minimap'
+"    Plugin 'https://github.com/majutsushi/tagbar.git'
+"
+    " Tag
+    Plugin 'https://github.com/godlygeek/tabular.git'
+    Plugin 'utags'
+
+    " Syntax
+"    Plugin 'editorconfig/editorconfig-vim'
+    Plugin 'evanmiller/nginx-vim-syntax'
+    Plugin 'plasticboy/vim-markdown'
+    Plugin 'Glench/Vim-Jinja2-Syntax'
+    Plugin 'groenewege/vim-less'
+    Plugin 'hail2u/vim-css3-syntax'
+    Plugin 'othree/html5.vim'
+    Plugin 'saltstack/salt-vim'
+    Plugin 'ekalinin/Dockerfile.vim'
+    Plugin 'marijnh/tern_for_vim'
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'StanAngeloff/php.vim'
+
+     " code sinppets
+     Plugin 'SirVer/ultisnips'
+     Plugin 'honza/vim-snippets'
+
+    " Python
+    Plugin 'klen/python-mode'
+    Plugin 'https://github.com/jmcantrell/vim-virtualenv.git'
+    Plugin 'ervandew/supertab'
+
+    call vundle#end()            " required
+    filetype plugin indent on    " required
+    " Vundles end
+    if iCanHazVundle == 0
+        echo "Installing Plugins, please ignore key map error messages"
+        echo ""
+    :PluginInstall
+    endif
+" Vundle end
+
+"set color according to terminal
+if &term =~ "xterm"
+    "256 color --
+    let &t_Co=256
+    " restore screen after quitting
+    set t_ti=ESC7ESC[rESC[?47h t_te=ESC[?47lESC8
+    if has("terminfo")
+        let &t_Sf="\ESC[3%p1%dm"
+        let &t_Sb="\ESC[4%p1%dm"
+    else
+        let &t_Sf="3%dm"
+        let &t_Sb="4%dm"
+    endif
+else
+    if &term =~ "screen-bce"
+        "256 color --
+        let &t_Co=256
+        " restore screen after quitting
+        set t_ti=ESC7ESC[rESC[?47h t_te=ESC[?47lESC8
+        if has("terminfo")
+            let &t_Sf="\ESC[3%p1%dm"
+            let &t_Sb="\ESC[4%p1%dm"
+        else
+            let &t_Sf="^[3%dm"
+            let &t_Sb="^[4%dm"
+        endif
+    endif
+endif
+
+set nocompatible   " Disable vi-compatibility
+set laststatus=2   " Always show the statusline
+set encoding=utf-8 " Necessary to show unicode glyphs
+
+set backspace=indent,eol,start
+filetype off
+
+"airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
+"solarized
+syntax enable
+colorscheme solarized
+set background=dark
+
+"coding preferences
+set t_Co=16
+set number
+set expandtab
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set cursorline
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch "highlight all search
+:syntax on
+filetype plugin indent on
+filetype plugin on
+filetype indent on
+
+"tab-completion
+set wildmode=longest,list,full
+set wildmenu
+
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+
+"save sessions
+map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
+map <F3> :source ~/.vim_session <cr>     " And load session with F3
+map <F3> :source ~/.vim_session <cr>     " And load session with F3
+
+"different file type
+au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
+"ignore some files
+set wildignore=*.pyc,*cover,*/static/*,*/assets/*
+
+"always have nerdtree
+"autocmd VimEnter * NERDTree
+"autocmd BufEnter * NERDTreeMirror
+"nerdtree hotkeys
+silent! nmap <C-e> :NERDTreeToggle<CR>
+"let NERDTreeQuitOnOpen=1 "auto close nerdtree
+
+"ignore pyc file in nerdtree
+let NERDTreeIgnore = ['\.pyc$']
+
+"tagbar hotkey
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_width=40
+let g:tagbar_autoclose=1
+
+"au WinLeave * set nocursorline nocursorcolumn
+"au WinEnter * set cursorline cursorcolumn
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline cursorcolumn
+    au WinLeave * setlocal nocursorline nocursorcolumn
+augroup END
+set cursorline cursorcolumn
+
+"wrap line that is longer than 100
+set wrap
+set textwidth=99
+set formatoptions+=t
+set wrapmargin=0
+set linebreak
+" note trailing space at end of next line
+set showbreak=>\ \ \
+
+"change background color to red for line that is longer than 100 chars
+:hi OverLength ctermbg=red ctermfg=white guibg=#592929
+call matchadd('OverLength', '\%101v.\+')
+autocmd WinEnter * call matchadd('OverLength', '\%>101v.\+')
+
+"choosewin
+nmap  -  <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
+
+"ctrlp settings
+let g:ctrlp_follow_symlinks = 1
+
+"pymode settings
+let g:pymode_options_max_line_length = 100
+let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
+"turn off pymode doc
+let g:pymode_doc = 0
+set completeopt=menu
+let g:pymode_rope = 1
+let g:pymode_rope_completion = 0
+let g:pymode_rope_rename_bind='<C-c>rr'
+
+""highlight trailing whitespace
+:hi ExtraWhitespace ctermbg=red guibg=red
+call matchadd('ExtraWhitespace', '\s\+$', 11)
+autocmd WinEnter * call matchadd('ExtraWhitespace', '\s\+$', 11)
+
+"highlight cursorline
+:hi CursorLine   cterm=None ctermbg=2 ctermfg=white guibg=ForestGreen guifg=white
+:hi CursorColumn cterm=None ctermbg=2 ctermfg=white guibg=ForestGreen guifg=white
+:nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
+" YouCompleteMe
+let g:ycm_key_list_select_completion = ['<C-j>']
+let g:ycm_key_list_previous_completion = ['<C-k>']
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<C-l>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+
+" PHP group highlight
+" Put at the very end of your .vimrc file.
+function! PhpSyntaxOverride()
+  hi! def link phpDocTags  phpDefine
+  hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+  autocmd!
+  autocmd FileType php call PhpSyntaxOverride()
+augroup END
