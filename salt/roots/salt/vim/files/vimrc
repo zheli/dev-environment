@@ -119,29 +119,63 @@ filetype off
 "airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'solarized'
 
 "solarized
 syntax enable
 colorscheme solarized
 set background=dark
 
+" Set vim to interpret modelines - disabled on OSX
+set modelines=1
+
 "coding preferences
 set t_Co=16
 set number
-set expandtab
-set tabstop=8
-set shiftwidth=4
 set softtabstop=4
 set autoindent
 set cursorline
+" Ignore case when searching
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch "highlight all search
+set showmatch " Show matching braces
+
+"--------------------------------------------------------------------------
+" Text & indentation
+"--------------------------------------------------------------------------
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set smarttab
+
+set lbr
+set tw=500
+set bs=2
+
+set ai " Auto indent
+set si " Smart indent
+set wrap " Wrap lines
 :syntax on
 filetype plugin indent on
 filetype plugin on
 filetype indent on
+
+"--------------------------------------------------------------------------
+" Backups, files and undo
+"--------------------------------------------------------------------------
+" No backups as we version control
+" set nobackup
+" set nowb
+" set noswapfile
+
+" Persistent undo
+set undodir=~/.vim_runtime/undodir
+set undofile
+
+" Enable Spell Checking
+set spell
 
 "tab-completion
 set wildmode=longest,list,full
@@ -216,6 +250,14 @@ let g:pymode_rope = 1
 let g:pymode_rope_completion = 0
 let g:pymode_rope_rename_bind='<C-c>rr'
 
+"--------------------------------------------------------------------------
+" Python
+"--------------------------------------------------------------------------
+"
+let python_highlight_all = 1
+au FileType python set cc=80
+set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+
 ""highlight trailing whitespace
 :hi ExtraWhitespace ctermbg=red guibg=red
 call matchadd('ExtraWhitespace', '\s\+$', 11)
@@ -229,6 +271,15 @@ autocmd WinEnter * call matchadd('ExtraWhitespace', '\s\+$', 11)
 " YouCompleteMe
 let g:ycm_key_list_select_completion = ['<C-j>']
 let g:ycm_key_list_previous_completion = ['<C-k>']
+let g:ycm_autoclose_preview_window_after_completion=1
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"--------------------------------------------------------------------------
+" Fugitive
+"--------------------------------------------------------------------------
+map <leader>gs :Gstatus<CR>
+map <leader>gw :Gwrite<CR>
+map <leader>gc :Gcommit<CR>
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<C-l>"
