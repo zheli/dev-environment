@@ -37,7 +37,7 @@ def bootstrap_salt():
     Uses the salt bootstrap script (from bootstrap.saltstack.org) to install a
     salt-minion and run it as a daemon
     '''
-    run("curl -L http://bootstrap.saltstack.org | sudo sh")
+    run("curl -L https://bootstrap.saltstack.com | sudo sh")
 
 
 @parallel
@@ -87,6 +87,11 @@ def fullstrap_minions():
     install_curl()
     install_gitpython()
     bootstrap_salt()
+    provision()
+
+
+@parallel
+def provision():
     copy_minion_config()
     copy_salt_state()
     restart_minion()
