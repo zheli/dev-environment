@@ -25,5 +25,5 @@ vagrant ssh
 With customized theme and binding keys.
 ![tmux](https://raw.githubusercontent.com/zheli/dev-environment/master/docs/images/tmux.png)
 ###vim
-With [airline](https://github.com/bling/vim-airline), [ctrlp](https://github.com/kien/ctrlp.vim) and some other plugins.
+With [airline](https://github.com/bling/vim-airline), [ctrlp](https://github.com/kien/ctrlp.vim) and some other goodies.
 ![vim](https://raw.githubusercontent.com/zheli/dev-environment/master/docs/images/vim.png)
