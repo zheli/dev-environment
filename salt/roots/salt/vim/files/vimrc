@@ -195,7 +195,6 @@ au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
 set wildignore=*.pyc,*cover,*/static/*,*/assets/*
 
 " nerdtree
-"autocmd BufEnter * NERDTreeMirror
 silent! nmap <C-e> :NERDTreeToggle<CR> "nerdtree hotkeys
 let NERDTreeQuitOnOpen=1 "auto close nerdtree
 
@@ -267,6 +266,10 @@ let g:ycm_key_list_previous_completion = ['<C-k>']
 let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+" Choosewin
+nmap  -  <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
+
 "--------------------------------------------------------------------------
 " Fugitive
 "--------------------------------------------------------------------------
@@ -303,6 +306,7 @@ augroup vimrc_autocmd
 
   "always have nerdtree
   autocmd VimEnter * NERDTree
+  autocmd BufEnter * NERDTreeMirror
 
   " extra whitespace
   autocmd WinEnter * call matchadd('ExtraWhitespace', '\s\+$', 11)
