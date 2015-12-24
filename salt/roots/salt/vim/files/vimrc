@@ -29,7 +29,6 @@ set nocompatible   " Disable vi-compatibility
     Plugin 'git://github.com/altercation/vim-colors-solarized.git'
     Plugin 'tpope/vim-fugitive'
     Plugin 'https://github.com/chriskempson/vim-tomorrow-theme'
-    Plugin 'https://github.com/tpope/vim-pathogen.git'
 
     " Interface
     Plugin 'https://github.com/kien/ctrlp.vim.git'
@@ -41,8 +40,8 @@ set nocompatible   " Disable vi-compatibility
     Plugin 'https://github.com/jiangmiao/auto-pairs.git'
     Plugin 'rking/ag.vim'
     Plugin 'myusuf3/numbers.vim'
+    Plugin 'https://github.com/majutsushi/tagbar.git'
 "    Plugin 'severin-lemaignan/vim-minimap'
-"    Plugin 'https://github.com/majutsushi/tagbar.git'
 "
     " Tag
     Plugin 'https://github.com/godlygeek/tabular.git'
@@ -120,7 +119,7 @@ filetype off
 "airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'dark'
 
 "solarized
 syntax enable
@@ -195,12 +194,10 @@ au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
 "ignore some files
 set wildignore=*.pyc,*cover,*/static/*,*/assets/*
 
-"always have nerdtree
-"autocmd VimEnter * NERDTree
+" nerdtree
 "autocmd BufEnter * NERDTreeMirror
-"nerdtree hotkeys
-silent! nmap <C-e> :NERDTreeToggle<CR>
-"let NERDTreeQuitOnOpen=1 "auto close nerdtree
+silent! nmap <C-e> :NERDTreeToggle<CR> "nerdtree hotkeys
+let NERDTreeQuitOnOpen=1 "auto close nerdtree
 
 "ignore pyc file in nerdtree
 let NERDTreeIgnore = ['\.pyc$']
@@ -227,6 +224,9 @@ set wrapmargin=0
 set linebreak
 " note trailing space at end of next line
 set showbreak=>\ \ \
+""highlight trailing whitespace
+:hi ExtraWhitespace ctermbg=red guibg=red
+call matchadd('ExtraWhitespace', '\s\+$', 11)
 
 "choosewin
 nmap  -  <Plug>(choosewin)
@@ -248,7 +248,6 @@ let g:pymode_rope_rename_bind='<C-c>rr'
 let g:numbers_exclude = ['unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m', 'nerdtree']
 nnoremap <F4> :NumbersToggle<CR>
 
-
 "--------------------------------------------------------------------------
 " Python
 "--------------------------------------------------------------------------
@@ -256,10 +255,6 @@ nnoremap <F4> :NumbersToggle<CR>
 let python_highlight_all = 1
 au FileType python set cc=80
 set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
-""highlight trailing whitespace
-:hi ExtraWhitespace ctermbg=red guibg=red
-call matchadd('ExtraWhitespace', '\s\+$', 11)
 
 "highlight cursorline
 :hi CursorLine   cterm=None ctermbg=2 ctermfg=white guibg=ForestGreen guifg=white
@@ -295,8 +290,19 @@ endfunction
 :hi OverLength ctermbg=red ctermfg=white guibg=#592929
 call matchadd('OverLength', '\%101v.\+')
 
+" remove trailing whitespace
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
 augroup vimrc_autocmd
   autocmd!
+
+  "always have nerdtree
+  autocmd VimEnter * NERDTree
 
   " extra whitespace
   autocmd WinEnter * call matchadd('ExtraWhitespace', '\s\+$', 11)
@@ -306,4 +312,8 @@ augroup vimrc_autocmd
 
   " php syntax
   autocmd FileType php call PhpSyntaxOverride()
+
+  " auto remove trailling whitespace
+  autocmd FileType c,cpp,java,php,ruby,python,php,vimrc autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
 augroup END
