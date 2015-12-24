@@ -1,4 +1,5 @@
-set nocompatible   " Disable vi-compatibility
+" Disable vi-compatibility
+set nocompatible
 
 " Vundle
 "--------------------------------------------------------------------------
@@ -195,8 +196,10 @@ au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
 set wildignore=*.pyc,*cover,*/static/*,*/assets/*
 
 " nerdtree
-silent! nmap <C-e> :NERDTreeToggle<CR> "nerdtree hotkeys
-let NERDTreeQuitOnOpen=1 "auto close nerdtree
+"nerdtree hotkeys
+silent! nmap <C-e> :NERDTreeToggle<CR>
+"auto close nerdtree
+let NERDTreeQuitOnOpen=1
 
 "ignore pyc file in nerdtree
 let NERDTreeIgnore = ['\.pyc$']
