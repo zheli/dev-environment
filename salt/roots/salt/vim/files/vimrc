@@ -29,7 +29,7 @@ set nocompatible   " Disable vi-compatibility
     Plugin 'git://github.com/altercation/vim-colors-solarized.git'
     Plugin 'tpope/vim-fugitive'
     Plugin 'https://github.com/chriskempson/vim-tomorrow-theme'
-"    Plugin 'https://github.com/tpope/vim-pathogen.git'
+    Plugin 'https://github.com/tpope/vim-pathogen.git'
 
     " Interface
     Plugin 'https://github.com/kien/ctrlp.vim.git'
@@ -40,6 +40,7 @@ set nocompatible   " Disable vi-compatibility
     Plugin 'https://github.com/t9md/vim-choosewin.git'
     Plugin 'https://github.com/jiangmiao/auto-pairs.git'
     Plugin 'rking/ag.vim'
+    Plugin 'myusuf3/numbers.vim'
 "    Plugin 'severin-lemaignan/vim-minimap'
 "    Plugin 'https://github.com/majutsushi/tagbar.git'
 "
@@ -123,8 +124,8 @@ let g:airline_theme = 'solarized'
 
 "solarized
 syntax enable
-colorscheme solarized
 set background=dark
+colorscheme solarized
 
 " Set vim to interpret modelines - disabled on OSX
 set modelines=1
@@ -188,7 +189,6 @@ let g:html_indent_style1 = "inc"
 "save sessions
 map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
 map <F3> :source ~/.vim_session <cr>     " And load session with F3
-map <F3> :source ~/.vim_session <cr>     " And load session with F3
 
 "different file type
 au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
@@ -228,11 +228,6 @@ set linebreak
 " note trailing space at end of next line
 set showbreak=>\ \ \
 
-"change background color to red for line that is longer than 100 chars
-:hi OverLength ctermbg=red ctermfg=white guibg=#592929
-call matchadd('OverLength', '\%101v.\+')
-autocmd WinEnter * call matchadd('OverLength', '\%>101v.\+')
-
 "choosewin
 nmap  -  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
@@ -249,6 +244,10 @@ set completeopt=menu
 let g:pymode_rope = 1
 let g:pymode_rope_completion = 0
 let g:pymode_rope_rename_bind='<C-c>rr'
+" numbers
+let g:numbers_exclude = ['unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m', 'nerdtree']
+nnoremap <F4> :NumbersToggle<CR>
+
 
 "--------------------------------------------------------------------------
 " Python
@@ -261,7 +260,6 @@ set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 ""highlight trailing whitespace
 :hi ExtraWhitespace ctermbg=red guibg=red
 call matchadd('ExtraWhitespace', '\s\+$', 11)
-autocmd WinEnter * call matchadd('ExtraWhitespace', '\s\+$', 11)
 
 "highlight cursorline
 :hi CursorLine   cterm=None ctermbg=2 ctermfg=white guibg=ForestGreen guifg=white
@@ -293,7 +291,19 @@ function! PhpSyntaxOverride()
   hi! def link phpDocParam phpType
 endfunction
 
-augroup phpSyntaxOverride
+"change background color to red for line that is longer than 100 chars
+:hi OverLength ctermbg=red ctermfg=white guibg=#592929
+call matchadd('OverLength', '\%101v.\+')
+
+augroup vimrc_autocmd
   autocmd!
+
+  " extra whitespace
+  autocmd WinEnter * call matchadd('ExtraWhitespace', '\s\+$', 11)
+
+  " overlength
+  autocmd WinEnter * call matchadd('OverLength', '\%>101v.\+')
+
+  " php syntax
   autocmd FileType php call PhpSyntaxOverride()
 augroup END
