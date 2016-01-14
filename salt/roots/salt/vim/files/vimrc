@@ -30,6 +30,7 @@ set nocompatible
     Plugin 'git://github.com/altercation/vim-colors-solarized.git'
     Plugin 'tpope/vim-fugitive'
     Plugin 'https://github.com/chriskempson/vim-tomorrow-theme'
+    Plugin 'https://github.com/tpope/vim-unimpaired.git'
 
     " Interface
     Plugin 'https://github.com/kien/ctrlp.vim.git'
@@ -44,6 +45,9 @@ set nocompatible
     Plugin 'https://github.com/majutsushi/tagbar.git'
 "    Plugin 'severin-lemaignan/vim-minimap'
 "
+    " Helper
+    Plugin 'https://github.com/scrooloose/nerdcommenter.git'
+
     " Tag
     Plugin 'https://github.com/godlygeek/tabular.git'
     Plugin 'utags'
@@ -192,6 +196,7 @@ map <F3> :source ~/.vim_session <cr>     " And load session with F3
 
 "different file type
 au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
+au FileType html set softtabstop=2 tabstop=2 shiftwidth=2
 "ignore some files
 set wildignore=*.pyc,*cover,*/static/*,*/assets/*
 
@@ -220,7 +225,7 @@ set cursorline cursorcolumn
 
 "wrap line that is longer than 100
 set wrap
-set textwidth=99
+set textwidth=100
 set formatoptions+=t
 set wrapmargin=0
 set linebreak
@@ -231,7 +236,7 @@ set showbreak=>\ \ \
 call matchadd('ExtraWhitespace', '\s\+$', 11)
 
 "choosewin
-nmap  -  <Plug>(choosewin)
+nmap  =  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 
 "ctrlp settings
@@ -243,7 +248,7 @@ let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_l
 "turn off pymode doc
 let g:pymode_doc = 0
 set completeopt=menu
-let g:pymode_rope = 1
+let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
 let g:pymode_rope_rename_bind='<C-c>rr'
 " numbers
@@ -255,7 +260,7 @@ nnoremap <F4> :NumbersToggle<CR>
 "--------------------------------------------------------------------------
 "
 let python_highlight_all = 1
-au FileType python set cc=80
+au FileType python set cc=100
 set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
 "highlight cursorline
@@ -300,6 +305,19 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
+
 augroup vimrc_autocmd
   autocmd!
 
@@ -311,12 +329,15 @@ augroup vimrc_autocmd
   autocmd WinEnter * call matchadd('ExtraWhitespace', '\s\+$', 11)
 
   " overlength
-  autocmd WinEnter * call matchadd('OverLength', '\%>101v.\+')
+  "autocmd WinEnter * call matchadd('OverLength', '\%>101v.\+')
 
   " php syntax
   autocmd FileType php call PhpSyntaxOverride()
 
   " auto remove trailling whitespace
   autocmd FileType c,cpp,java,php,ruby,python,php,vimrc autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+  " auto close when only nerdtree is left
+  autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
 augroup END
