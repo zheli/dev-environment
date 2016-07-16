@@ -1,18 +1,22 @@
 #dev-environment
-My development environment bootstrap code using Vagrant and Salt.
+Bootstrap a remote development environment using SaltStack and Fabric.
 
 ##Prerequisites
-You will need fabric.
+You need to install Fabric to be able to run the bootstrap.sh script. I recommend run the following command inside a virutalenv:
 
-##Use VirtualBox
-It is very simple to bootstrap development environment via VirtualBox. First make sure you have a RSA pubkey in your .ssh folder, then
- just create a new box using this command:
+```pip install Fabric```
+
+You also need to have a ```id_ras.key``` file inside your ```~/.ssh``` folder, because the script will add that public key to the ```authorized_keys``` file on the remote computer.
+
+##Create a dev environment inside a virtualbox
+We can use Vagrant to create a new virtualbox instance and then bootstrap it using Fabric command. Make sure you have Vagrant installed. Then simply run:
+
+```vagrant up```
+
+to get a new virtualbox instance. After that bootstrap your new environment with this command:
+
 ```
-vagrant up && ./bootstrap.sh 127.0.0.1:[mapped ssh port] vagrant
-```
-And then you can ssh into the box using
-```
-vagrant ssh
+./bootstrap.sh 127.0.0.1:[mapped ssh port] vagrant
 ```
 
 ##Use on a remote host
