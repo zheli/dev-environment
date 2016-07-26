@@ -26,7 +26,7 @@ to get a new virtualbox instance. After that bootstrap your new environment with
 
 ##What's in it?
 ###tmux
-With customized theme and binding keys.
+With solarized theme and binding keys.
 ![tmux](https://raw.githubusercontent.com/zheli/dev-environment/master/docs/images/tmux.png)
 ###vim
 With [airline](https://github.com/bling/vim-airline), [ctrlp](https://github.com/kien/ctrlp.vim) and some other goodies.
@@ -36,3 +36,4 @@ With [airline](https://github.com/bling/vim-airline), [ctrlp](https://github.com
 * Upgrade tmux to 1.9 automatically
 * Install zshell
 * Add instructions to setup putty with correct colors
+* Setup YouCompleteMe automatically
