@@ -31,3 +31,8 @@ With customized theme and binding keys.
 ###vim
 With [airline](https://github.com/bling/vim-airline), [ctrlp](https://github.com/kien/ctrlp.vim) and some other goodies.
 ![vim](https://raw.githubusercontent.com/zheli/dev-environment/master/docs/images/vim.png)
+
+##TODO
+* Upgrade tmux to 1.9 automatically
+* Install zshell
+* Add instructions to setup putty with correct colors
