@@ -27,6 +27,9 @@ to get a new virtualbox instance. After that bootstrap your new environment with
 ##What's in it?
 ###tmux
 With solarized theme and binding keys.
+* '''ctrl+b, s''' split window vertically
+* '''ctrl+b, v''' split window horizontally
+
 ![tmux](https://raw.githubusercontent.com/zheli/dev-environment/master/docs/images/tmux.png)
 ###vim
 With [airline](https://github.com/bling/vim-airline), [ctrlp](https://github.com/kien/ctrlp.vim) and some other goodies.
