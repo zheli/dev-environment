@@ -6,14 +6,19 @@ You need to install Fabric to be able to run the bootstrap.sh script. I recommen
 
 ```pip install Fabric```
 
-You also need to have a ```id_ras.key``` file inside your ```~/.ssh``` folder, because the script will add that public key to the ```authorized_keys``` file on the remote computer.
+##Configuration
+By default it will create a new user ```zhe``` in the provisioned machine. You can fork the project and change the user settings in file ```salt/roots/pillar/users.sls```
+
+You need to add your public key to salt/roots/salt/keys folder and name it to key.pub.
 
 ##Create a dev environment inside a virtualbox
 We can use Vagrant to create a new virtualbox instance and then bootstrap it using Fabric command. Make sure you have Vagrant installed. Then simply run:
 
 ```vagrant up```
 
-to get a new virtualbox instance. After that bootstrap your new environment with this command:
+to get a new virtualbox instance. It will also append ```id_ras.key``` file inside your ```~/.ssh``` folder to ```authorized_keys``` file in the in virtualbox instance.
+
+After that bootstrap your new environment with this command:
 
 ```
 ./bootstrap.sh 127.0.0.1:[mapped ssh port] vagrant
