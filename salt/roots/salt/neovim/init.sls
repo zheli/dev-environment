@@ -6,11 +6,10 @@ neovim-dependencies:
       - python3-dev
       - python3-pip
       
-pkgrepo.managed:
-- ppa: ppa:neovim-ppa/unstable
-- require_in:
-  - pkg: neovim
-
-pkg.latest:
-- name: neovim
-- refresh: True
+neovim-ppa:
+  pkgrepo.managed:
+    - ppa: neovim-ppa/unstable
+    - require_in:
+  pkg.latest:
+    - name: neovim
+    - refresh: True
