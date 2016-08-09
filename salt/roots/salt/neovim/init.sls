@@ -43,17 +43,17 @@ neovim-config-link:
     - user: {{ user }}
     - group: {{ user }}
 
-install-neovim-plugins:
-  cmd.run:
-    - name: nvim +PlugInstall +qall
-    - runas: {{ user }}
-    - require:
-      - file: neovim-config-link
-
-setup-YCM:
-  cmd.run:
-    - name: ./install.py --clang-completer --tern-completer
-    - runas: {{ user }}
-    - require:
-      - cmd: install-neovim-plugins
+# install-neovim-plugins:
+#   cmd.run:
+#     - name: nvim +PlugInstall +qall
+#     - runas: {{ user }}
+#     - require:
+#       - file: neovim-config-link
+# 
+# setup-YCM:
+#   cmd.run:
+#     - name: ./install.py --clang-completer --tern-completer
+#     - runas: {{ user }}
+#     - require:
+#       - cmd: install-neovim-plugins
 {% endfor %}
