@@ -32,6 +32,7 @@ neovim-config:
   git.latest:
     - name: https://github.com/zheli/neovim-config.git
     - target: /home/{{ user }}/src/neovim-config
+    - user: zhe
     - require_in:
       - neovim-config-link
 
@@ -40,7 +41,7 @@ neovim-config-link:
     - name: /home/{{ user }}/.config/nvim
     - target: /home/{{ user }}/src/neovim-config
     - makedirs: True
-    - user: {{ user }}
+    Qjjj- user: {{ user }}
     - group: {{ user }}
 
 # install-neovim-plugins:
