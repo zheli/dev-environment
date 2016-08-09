@@ -4,6 +4,7 @@ fileserver_backend:
   - git
 gitfs_provider: gitpython
 gitfs_remotes:
+  - https://github.com/saltstack-formulas/node-formula.git
   - https://github.com/saltstack-formulas/users-formula
   - https://github.com/saltstack-formulas/tmux-formula.git
   - https://github.com/zheli/vim-formula

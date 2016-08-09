@@ -6,4 +6,5 @@ base:
     - tmux
     - vim
     - vim.YouCompleteMe
+    - node
     - neovim
