@@ -41,7 +41,7 @@ neovim-config-link:
     - name: /home/{{ user }}/.config/nvim
     - target: /home/{{ user }}/src/neovim-config
     - makedirs: True
-    Qjjj- user: {{ user }}
+    - user: {{ user }}
     - group: {{ user }}
 
 # install-neovim-plugins:
