@@ -41,7 +41,7 @@ With [airline](https://github.com/bling/vim-airline), [ctrlp](https://github.com
 ![vim](https://raw.githubusercontent.com/zheli/dev-environment/master/docs/images/vim.png)
 
 ##TODO
-* Upgrade tmux to 1.9 automatically
+* ~~Upgrade tmux to 2.0 automatically~~
 * Install zshell
 * Add instructions to setup putty with correct colors
 * Setup YouCompleteMe automatically
