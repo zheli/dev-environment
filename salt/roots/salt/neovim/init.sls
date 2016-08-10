@@ -32,7 +32,7 @@ neovim-config:
   git.latest:
     - name: https://github.com/zheli/neovim-config.git
     - target: /home/{{ user }}/src/neovim-config
-    - user: zhe
+    - user: {{user}}
     - require_in:
       - neovim-config-link
 
