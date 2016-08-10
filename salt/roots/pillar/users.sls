@@ -18,7 +18,6 @@ users:
       user.email: linuxcity.jn@gmail.com
       alias.st: status
       alias.co: checkout
-      alias.co: checkout
       push.default: simple
     user_files:
       enabled: True
