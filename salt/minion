@@ -6,7 +6,6 @@ gitfs_provider: gitpython
 gitfs_remotes:
   - https://github.com/saltstack-formulas/node-formula
   - https://github.com/saltstack-formulas/users-formula
-  - https://github.com/bechtoldt/saltstack-zsh-formula
   - https://github.com/zheli/vim-formula
   - https://github.com/zheli/requirement-formula
   - https://github.com/zheli/tmux-formula
