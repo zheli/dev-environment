@@ -8,3 +8,4 @@ base:
     - vim.YouCompleteMe
     - node
     - neovim
+    - zsh
