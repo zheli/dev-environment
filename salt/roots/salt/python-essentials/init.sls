@@ -1,0 +1,2 @@
+virtualenvwrapper:
+  pip.installed
