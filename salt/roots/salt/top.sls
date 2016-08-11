@@ -12,3 +12,4 @@ base:
     - zsh
     - docker
     - docker.compose
+    - docker.adduser
