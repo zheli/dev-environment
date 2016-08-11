@@ -20,7 +20,7 @@ change_shell:
 
 .zshrc:
   file.managed:
-  - name: /home/{{ user }}/.zshrc"
+  - name: /home/{{ user }}/.zshrc
   - source: salt://zsh/files/zshrc
   - user: {{ user  }}
   - group: {{ user }}
