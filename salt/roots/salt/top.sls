@@ -10,3 +10,5 @@ base:
     - node
     - neovim
     - zsh
+    - docker
+    - docker.compose
